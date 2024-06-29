@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Project;
 use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
@@ -18,6 +19,12 @@ class TaskController extends Controller
         ]);
         if($validator->fails()){
             return response()->json($validator->errors(),422);
+        }
+        // check project_id
+        $project_id=$request->project_id;
+        $project=Project::find($project_id);
+        if(!$project){
+            return response()->json(['message'=>'Project not found'],404); 
         }
         $task=Task::create($request->all());
         $massage['message']='Task created successfully';
