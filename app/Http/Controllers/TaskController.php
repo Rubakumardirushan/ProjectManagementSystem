@@ -15,7 +15,7 @@ class TaskController extends Controller
             'description'=>'required',
             'title'=>'required',
             'status'=>'required',
-            'project_id'=>'required'
+            'project_id'=>'required|exists:projects,id'
         ]);
         if($validator->fails()){
             return response()->json($validator->errors(),422);
