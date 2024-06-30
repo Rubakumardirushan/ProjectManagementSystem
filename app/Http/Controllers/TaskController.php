@@ -45,14 +45,17 @@ class TaskController extends Controller
     }
 
 
-public function showProjectTask($id){
-    $task=Task::where('project_id',$id)->get();
-    if($task){
-        return response()->json($task,200);
-    }
-    else{
-        return response()->json(['message'=>'Task not found'],404); 
-    }
+    public function showProjectTask($id) {
+    
+        $tasks = Task::where('project_id', $id)->get();
+
+        // Check if the task collection is empty
+        if ($tasks->isEmpty()) {
+            return response()->json(['message' => 'No tasks found for this project'], 404);
+        }
+
+        return response()->json($tasks, 200);
+    
 }
    
 public function update(Request $request,$id){
