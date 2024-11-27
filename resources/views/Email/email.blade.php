@@ -11,7 +11,7 @@
     <p>Thank you for your registration</p>
    <p>Your Otp {{$otp}}</p>
 
-    <p>Thank you</p>
+    <p>Thank you ! virat</p>
     
 </body>
 </html>
